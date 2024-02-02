@@ -1,12 +1,23 @@
 package set
 
+// A hash set implementation, using a valueless map.
+// Yes, it is just a glorified wrapper. At least it has no external dependencies.
+// It can contain any value satisfying the comparable interface.
+//
+// example...
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+// set := NewHashSet[int]()
+// set.Add(2, 3, 1, 9, 11, 9213209)
+// fmt.Println(set)			- prints out the above values in the set
+// set.Remove(3, 99)		- 99 does nothing, but does not error
+// should now contain 2, 1, 9, 11, 9213209.
+// Clone() returns a pointer to a new deep copy if you want to edit one and its values
+
 import (
 	"fmt"
 	"strings"
 )
 
-// A hash set implementation, using a valueless map.
-// Yes, it is just a glorified wrapper.
 type HashSet[T comparable] struct {
 	elements map[T]struct{}
 }
@@ -28,12 +39,13 @@ func (set *HashSet[T]) Add(newElements ...T) bool {
 	return true
 }
 
-// Remove deletes an element of type T from the set.
+// Remove deletes an element(s) of type T from the set.
 func (set *HashSet[T]) Remove(element T) {
 	delete(set.elements, element)
 }
 
 // Contains checks if an element of type T is in the set.
+// does not work with compound types yet.
 func (set *HashSet[T]) Has(element T) bool {
 	_, exists := set.elements[element]
 	return exists

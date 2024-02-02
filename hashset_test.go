@@ -4,6 +4,27 @@ import (
 	"testing"
 )
 
+func TestReferenceSet(t *testing.T) {
+	type PtrStruct struct {
+		Name string
+	}
+
+	set := NewHashSet[*PtrStruct]()
+	set.Add(
+		&PtrStruct{Name: "first"},
+		&PtrStruct{Name: "second"},
+		&PtrStruct{Name: "third"},
+		&PtrStruct{Name: "fourth"},
+	)
+
+	t.Run("test copying and editing one", func(t *testing.T) {
+		copy := set.Clone()
+		copy.Add(&PtrStruct{Name: "newone"})
+		t.Log("original =", set)
+		t.Log("copy 	=", copy)
+	})
+}
+
 func TestClone(t *testing.T) {
 	set := NewHashSet[float32]()
 	set.Add(0, 1, 2, 3, 4, 5, 6, 7, 8, 9)
