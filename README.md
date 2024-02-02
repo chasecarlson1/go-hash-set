@@ -1,5 +1,5 @@
 # go-hash-set
-A hash set implementation in Golang.it
+A hash set implementation in Golang.
 
 A hash set implementation, using a valueless map.
 Yes, it is just a glorified wrapper. At least it has no external dependencies.
