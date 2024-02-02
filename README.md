@@ -5,7 +5,7 @@ Yes, it is just a glorified wrapper for map[T]U. At least it has no external dep
 It can contain any value satisfying the comparable interface.
 
 ## functions:
-### NewHashSet[T comparable]() *HashSet[T]
+### NewHashSet\[T comparable]() *HashSet[T]
 ### (set *HashSet[T]) Add(newElements ...T) bool
 ### (set *HashSet[T]) Add(newElements ...T) bool
 ### (set *HashSet[T]) Remove(element T)
